@@ -1,0 +1,45 @@
+syntax = "proto3";
+package tennis;
+
+message Tennis {
+  string id = 1;
+  string tournament = 2;
+  string player1 = 3;
+  string player2 = 4;
+  string date = 5;
+  // Add other specific tennis fields as needed
+}
+
+message GetTennisRequest {
+  string tennis_id = 1;
+}
+
+message GetTennisResponse {
+  Tennis tennis = 1;
+}
+
+message SearchTennisRequest {
+  string query = 1;
+}
+
+message SearchTennisResponse {
+  repeated Tennis tennis_matches = 1;
+}
+
+message CreateTennisRequest {
+  string tournament = 1;
+  string player1 = 2;
+  string player2 = 3;
+  string date = 4;
+  // Add other fields if necessary
+}
+
+message CreateTennisResponse {
+  string tennis_id = 1;
+}
+
+service TennisService {
+  rpc GetTennis(GetTennisRequest) returns (GetTennisResponse);
+  rpc SearchTennis(SearchTennisRequest) returns (SearchTennisResponse);
+  rpc CreateTennis(CreateTennisRequest) returns (CreateTennisResponse);
+}

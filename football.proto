@@ -1,0 +1,44 @@
+syntax = "proto3";
+package football;
+
+message Football {
+  string id = 1;
+  string team1 = 2;
+  string team2 = 3;
+  string stadium = 4;
+  string date = 5;
+  // Add other specific football fields as needed
+}
+
+message GetFootballRequest {
+  string football_id = 1;
+}
+
+message GetFootballResponse {
+  Football football = 1;
+}
+
+message SearchFootballRequest {
+  string query = 1;
+}
+
+message SearchFootballResponse {
+  repeated Football footballs = 1;
+}
+
+message CreateFootballRequest {
+  string team1 = 1;
+  string team2 = 2;
+  string stadium = 3;
+  string date = 4;
+}
+
+message CreateFootballResponse {
+  string football_id = 1;
+}
+
+service FootballService {
+  rpc GetFootball(GetFootballRequest) returns (GetFootballResponse);
+  rpc SearchFootball(SearchFootballRequest) returns (SearchFootballResponse);
+  rpc CreateFootball(CreateFootballRequest) returns (CreateFootballResponse);
+}
